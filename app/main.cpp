@@ -24,5 +24,4 @@ cout<<"Division       : "<<calc.divide(100,25)<<endl;
 
 return 0;
 
-}
-
+};
