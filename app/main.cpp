@@ -10,7 +10,7 @@ Calculator calc;
 
 cout<<"=============================="<<endl;
 
-cout<<" Enterprise DevOps Calculator"<<endl;
+cout<<" Enterprise DevOps CI/CD Calculator"<<endl;
 
 cout<<"=============================="<<endl;
 

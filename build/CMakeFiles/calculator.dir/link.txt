@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/calculator.dir/link.d CMakeFiles/calculator.dir/app/main.cpp.o CMakeFiles/calculator.dir/app/calculator.cpp.o -o calculator
