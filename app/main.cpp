@@ -1,9 +1,28 @@
 #include<iostream>
+#include "calculator.h"
+
+using namespace std;
 
 int main()
 {
-    std::cout<<"Calculator Project"<<std::endl;
 
-    return 0;
+Calculator calc;
+
+cout<<"=============================="<<endl;
+
+cout<<" Enterprise DevOps Calculator"<<endl;
+
+cout<<"=============================="<<endl;
+
+cout<<"Addition       : "<<calc.add(100,25)<<endl;
+
+cout<<"Subtraction    : "<<calc.subtract(100,25)<<endl;
+
+cout<<"Multiplication : "<<calc.multiply(100,25)<<endl;
+
+cout<<"Division       : "<<calc.divide(100,25)<<endl;
+
+return 0;
+
 }
 
