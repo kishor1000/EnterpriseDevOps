@@ -20,7 +20,7 @@ cout<<"Subtraction    : "<<calc.subtract(100,25)<<endl;
 
 cout<<"Multiplication : "<<calc.multiply(100,25)<<endl;
 
-cout<<"Division       : "<<calc.divide(100,25)<<endl;
+cout<<"Division       : "<<calc.divide(100,20)<<endl;
 
 return 0;
 

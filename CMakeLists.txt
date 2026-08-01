@@ -8,3 +8,4 @@ add_executable(calculator
     app/main.cpp
     app/calculator.cpp
 )
+install(TARGETS calculator DESTINATION bin)
