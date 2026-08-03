@@ -1,10 +1,31 @@
 services:
-  ubuntu1:
+  calculator:
+    image: enterprise-calculator:v2
+    container_name: calculator
+
+    env_file:
+      - ../.env
+
+    restart: unless-stopped
+
+    networks:
+      - enterprise-network
+
+    volumes:
+      - calculator-data:/logs
+
+  helper:
     image: ubuntu:24.04
-    container_name: ubuntu1
+    container_name: helper
+
     command: sleep infinity
 
-  ubuntu2:
-    image: ubuntu:24.04
-    container_name: ubuntu2
-    command: sleep infinity
+    networks:
+      - enterprise-network
+
+networks:
+  enterprise-network:
+
+volumes:
+  calculator-data:
+
