@@ -28,5 +28,8 @@ RUN cmake ..
 
 RUN make
 
+ENV APP_NAME=EnterpriseCalculator
+ENV APP_VERSION=1.0
+
 # Run application
 CMD ["./calculator"]
