@@ -1,1 +1,14 @@
+# Jenkins
 jenkins_home/
+
+# Build
+build/
+
+# Python
+devops-env/
+
+# Logs
+*.log
+
+# Temporary files
+*.swp
