@@ -1,0 +1,10 @@
+services:
+  ubuntu1:
+    image: ubuntu:24.04
+    container_name: ubuntu1
+    command: sleep infinity
+
+  ubuntu2:
+    image: ubuntu:24.04
+    container_name: ubuntu2
+    command: sleep infinity
