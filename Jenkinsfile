@@ -55,6 +55,23 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+	    steps {
+        	sh '''
+        	docker build -t calculator:v1 .
+        	'''
+    	    }
+	}
+
+	stage('Run Docker Container') {
+	    steps {
+       		 sh '''
+        	docker run --rm calculator:v1
+        	'''
+   	    }
+	}
+
+
         stage('Run Application') {
             steps {
                 sh '''

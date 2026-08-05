@@ -14,22 +14,13 @@ RUN apt-get update && apt-get install -y \
 # Create working directory
 WORKDIR /app
 
-# Copy source code
+# Copy application source
 COPY app/ ./app/
 COPY CMakeLists.txt .
 
-# Create build directory
-RUN mkdir build
+# Configure and build the application
+RUN cmake -S . -B build
+RUN cmake --build build
 
-# Build application
-WORKDIR /app/build
-
-RUN cmake ..
-
-RUN make
-
-ENV APP_NAME=EnterpriseCalculator
-ENV APP_VERSION=1.0
-
-# Run application
-CMD ["./calculator"]
+# Default command
+CMD ["./build/calculator"]
