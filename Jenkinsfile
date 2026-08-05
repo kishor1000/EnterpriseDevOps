@@ -13,6 +13,7 @@ pipeline {
         stage('Environment Verification') {
             steps {
                 sh '''
+                export PATH=$PATH:/var/jenkins_home/.local/bin
                 echo "===== Environment ====="
 
                 whoami
@@ -30,6 +31,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
+                export PATH=$PATH:/var/jenkins_home/.local/bin
                 conan profile detect --force
                 conan install . --build=missing
                 '''
