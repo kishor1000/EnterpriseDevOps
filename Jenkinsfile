@@ -6,49 +6,61 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Repository already checked out by Jenkins'
+                checkout scm
             }
         }
 
-        stage('Verify Environment') {
+        stage('Environment Verification') {
             steps {
                 sh '''
-                    whoami
-                    pwd
-                    git --version
-                    g++ --version
-                    cmake --version
-                    python3 --version
+                echo "===== Environment ====="
+
+                whoami
+                pwd
+
+                git --version
+                python3 --version
+                conan --version
+                g++ --version
+                cmake --version
                 '''
             }
         }
 
-        stage('Configure') {
+        stage('Install Dependencies') {
             steps {
                 sh '''
-                    rm -rf build
-                    cmake -S . -B build
+                conan profile detect --force
+                conan install . --build=missing
                 '''
             }
         }
 
-        stage('Build') {
+        stage('Configure Build') {
             steps {
                 sh '''
-                    cmake --build build
+                cmake -S . -B build
                 '''
             }
         }
 
-        stage('Run Calculator') {
+        stage('Compile') {
             steps {
                 sh '''
-                    ./build/calculator
+                cmake --build build
                 '''
             }
         }
 
-        stage('Archive') {
+        stage('Run Application') {
+            steps {
+                sh '''
+                ./build/calculator
+                '''
+            }
+        }
+
+        stage('Archive Binary') {
             steps {
                 archiveArtifacts artifacts: 'build/calculator', fingerprint: true
             }
@@ -57,3 +69,4 @@ pipeline {
     }
 
 }
+
