@@ -2,6 +2,12 @@ pipeline {
 
     agent any
 
+    environment {
+        PATH = "/var/jenkins_home/.local/bin:${env.PATH}"
+        IMAGE_NAME = "calculator"
+        IMAGE_TAG = "v1"
+    }
+
     stages {
 
         stage('Checkout') {
@@ -10,12 +16,9 @@ pipeline {
             }
         }
 
-        stage('Environment Verification') {
+        stage('Verify Environment') {
             steps {
                 sh '''
-                export PATH=$PATH:/var/jenkins_home/.local/bin
-                echo "===== Environment ====="
-
                 whoami
                 pwd
 
@@ -31,14 +34,13 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                export PATH=$PATH:/var/jenkins_home/.local/bin
                 conan profile detect --force
                 conan install . --build=missing
                 '''
             }
         }
 
-        stage('Configure Build') {
+        stage('Configure') {
             steps {
                 sh '''
                 rm -rf build
@@ -55,23 +57,6 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-	    steps {
-        	sh '''
-        	docker build -t calculator:v1 .
-        	'''
-    	    }
-	}
-
-	stage('Run Docker Container') {
-	    steps {
-       		 sh '''
-        	docker run --rm calculator:v1
-        	'''
-   	    }
-	}
-
-
         stage('Run Application') {
             steps {
                 sh '''
@@ -80,10 +65,42 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+                '''
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh '''
+                docker run --rm ${IMAGE_NAME}:${IMAGE_TAG}
+                '''
+            }
+        }
+
         stage('Archive Binary') {
             steps {
                 archiveArtifacts artifacts: 'build/calculator', fingerprint: true
             }
+        }
+
+    }
+
+    post {
+
+        always {
+            echo "Pipeline Completed"
+        }
+
+        success {
+            echo "Pipeline Successful"
+        }
+
+        failure {
+            echo "Pipeline Failed"
         }
 
     }
