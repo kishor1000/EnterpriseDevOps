@@ -1,7 +1,0 @@
-/home/kishor_kumar_s/EnterpriseDevOps/build/CMakeFiles/calculator.dir
-/home/kishor_kumar_s/EnterpriseDevOps/build/CMakeFiles/edit_cache.dir
-/home/kishor_kumar_s/EnterpriseDevOps/build/CMakeFiles/rebuild_cache.dir
-/home/kishor_kumar_s/EnterpriseDevOps/build/CMakeFiles/list_install_components.dir
-/home/kishor_kumar_s/EnterpriseDevOps/build/CMakeFiles/install.dir
-/home/kishor_kumar_s/EnterpriseDevOps/build/CMakeFiles/install/local.dir
-/home/kishor_kumar_s/EnterpriseDevOps/build/CMakeFiles/install/strip.dir
