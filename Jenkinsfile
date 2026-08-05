@@ -41,6 +41,7 @@ pipeline {
         stage('Configure Build') {
             steps {
                 sh '''
+                rm -rf build
                 cmake -S . -B build
                 '''
             }
