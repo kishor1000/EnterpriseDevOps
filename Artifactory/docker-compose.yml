@@ -1,0 +1,15 @@
+services:
+  artifactory:
+    image: releases-docker.jfrog.io/jfrog/artifactory-oss:7.77.5
+
+    container_name: artifactory
+
+    ports:
+      - "8082:8082"
+
+    volumes:
+      - artifactory-data:/var/opt/jfrog/artifactory
+
+volumes:
+  artifactory-data:
+
