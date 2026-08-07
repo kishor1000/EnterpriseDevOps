@@ -1,0 +1,19 @@
+groups:
+
+- name: demo-alerts
+
+  rules:
+
+  - alert: PrometheusDown
+
+    expr: up == 0
+
+    for: 1m
+
+    labels:
+      severity: critical
+
+    annotations:
+      summary: "Target is down"
+
+      description: "Prometheus target has been unreachable for more than 1 minute."
