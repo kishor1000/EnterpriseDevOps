@@ -43,3 +43,17 @@ services:
     privileged: true
 
     restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+    restart: unless-stopped
+volumes:
+  grafana-data:
